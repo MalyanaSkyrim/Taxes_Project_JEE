@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/"
+	  xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="template1">
+<head>
+	<meta charset="utf-8">
+	<title>Entreprises</title>
+</head>
+<body>
+	
+	<div layout:fragment="content" class=container>
+		<div class="card border-primary"> 
+			<div class="card-header text-white bg-primary">Liste des entreprises</div><!-- Par défaut gris -->
+			<div class=card-body>
+				<div class=container>
+					<form th:action="@{/entreprises}" method="get">
+						<label>Mot clé : </label>
+						<input type="text" name="motCle"/>
+						<button class="btn btn-primary">Chercher</button>
+					</form>
+				</div>
+				<table class="table">
+					<tr>
+						<th>Code</th><th>Nom</th><th>Raison Social</th><th>Email</th>
+					</tr>
+					<tr th:each="e:${entreprises}" >
+						<td th:text="${e.code}"></td>
+						<td th:text="${e.nom}"></td>
+						<td th:text=${e.raisonSocial}></td>
+						<td th:text=${e.email}></td>
+						<td>
+							<a th:href=@{/taxes(code=${e.code})}>Taxes</a>
+						</td>
+					</tr>
+				</table>
+				<div>
+					<ul class="nav nav-pills">
+						 <!-- class="nav-item" in li don't make space but nav-link in a do -->
+						<li  th:each="p,st:${pages}">
+							<a th:class="${st.index==pageCourante}?'active nav-link':'nav-link'" th:href="@{/entreprises(page=${st.index},size=5,motCle=${motCle})}" th:text="${st.index}"></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>		
+	</div>
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

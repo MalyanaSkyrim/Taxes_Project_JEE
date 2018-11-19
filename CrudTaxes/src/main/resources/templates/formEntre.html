@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/"
+	  xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="template1">
+<head>
+	<meta charset="utf-8">
+	<title>Entreprises</title>
+</head>
+<body>
+	
+	<div layout:fragment="content" class=container>
+	<div class="col-md-6 col-sm-6 col-xs-12">
+		<div class="card border-primary"> 
+			<div class="card-header text-white bg-primary">Ajout d'une entreprise</div><!-- Par défaut gris -->
+			<div class=card-body>
+				<form th:action="@{/saveEntreprise}" method="post">
+						<div class=form-group>
+							<label class=control-label>Nom : </label>
+							<input class=form-control type="text" name="nom" th:value=${entreprise.nom} />
+							<span class="text-danger" th:errors=${entreprise.nom}></span>
+						</div>
+						<div class=form-group>
+							<label class=control-label>Raison sociale : </label>
+							<input class=form-control type="text" name="raisonSocial" th:value=${entreprise.raisonSocial} />
+							<span class="text-danger" th:errors=${entreprise.raisonSocial}></span>
+						</div>
+						<div class=form-group>
+							<label class=control-label>Email : </label>
+							<input class=form-control type="text" name="email" th:value=${entreprise.email} />
+							<span class="text-danger" th:errors=${entreprise.email}></span>
+						</div>
+						<button class="btn btn-primary">Save</button>
+						
+				</form>
+				
+				
+			</div>
+		</div>		
+	</div>
+	</div>
+	
+</body>
+</html>
